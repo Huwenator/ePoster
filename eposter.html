@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>The One Vision ePoster App</title>
+
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/MixItUp.css" rel="stylesheet">
+    <link href="css/mb.zoomify.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+
+  </head>
+  <body>
+  	<!-- Filter buttons. If you add a  button you will also need to adjust the MixItUp css-->
+	<div class="controls">
+		<div style="float: right; margin: auto; transform: translateY(50%);">
+
+			<label>Filter:</label>
+			<button class="filter" data-filter="all">All</button>
+			<button class="filter" id="stream-1" data-filter=".category-1">Stream 1</button>
+			<button class="filter" id="stream-2" data-filter=".category-2">Stream 2</button>
+			<button class="filter" id="stream-3" data-filter=".category-3">Stream 3</button>
+			<button class="filter" id="stream-4" data-filter=".category-4">Stream 4</button>
+
+			<input type="search" id="input" placeholder="Search...">
+
+			<label>Sort by poster number:</label>
+			<button class="sort" data-sort="myorder:asc">&#9650;</button>
+			<button class="sort" data-sort="myorder:desc">&#9660;</button>
+		</div>
+		<!--  Logo on menu bar -->
+		<img src="img/logo.png" alt="One Vision" align="left" style="z-index: 200" data-toggle="modal" data-target="#myModal">
+	</div>
+	<!-- Modal  - This is the popup window on launch.  You can also access it by clicking on the header logo -->
+	<div tabindex="-1" class="modal fade" id="myModal" role="dialog" aria-hidden="true" aria-labelledby="myModalLabel">
+	  <div class="modal-dialog">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<h3 class="modal-title" id="myModalLabel">Some tips for you...</h3>
+		  </div>
+		  <div class="modal-body">
+			<ul>
+        <li>Posters need to be created in a 16:9 aspect ratio</li>
+				<li>Recommended poster dimensions are 3840px x 2160px (1920px x 1080 minimum)</li>
+        <li>Sample PowerPoint file can be downloaded from <a href="https://www.dropbox.com/s/b26on66uc7aoqb8/Poster%20template.pptx?dl=0">here</a></li>
+				<li>Smaller sizes will still display but the zoom function may not work as expected</li>
+				<li>Posters should be submitted as .png or .jpg</li>
+				<li>Poster can be submitted via a custom online form such as this one - <a href="https://form.jotform.com/60912538661963">Submit your poster</a></li>
+        <li>Top left logo is customisable as are the screen colours but netural tones work best</li>
+				<li>Works best in Google Chrome with a monitor resolution of 1920 x 1080</li>
+				<li>Search by poster number, name, author or keyword</li>
+				<!-- <li>Set the screen saver to Picture and point it at the folder containing the posters with a 5min delay</li> -->
+				<li><b>Esc to exit fullscreen mode</b></li>
+
+			</h5>
+		  </div>
+		  <div class="modal-footer">
+<!--			<button class="btn btn-primary" type="submit" onclick="$(document).fullScreen(true)">Switch to fullscreen</button> -->
+			<button class="btn btn-primary" type="button" data-dismiss="modal">Close and enter fullscreen mode</button>
+		  </div><!-- /.modal-footer -->
+		</div><!-- /.modal-content -->
+	  </div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+
+	<!-- Poster thumbnails start here
+	<!-- "mix category-X" is the poster stream/theme
+	<!-- "data-myorder" is the poster number
+ 	<!-- "img src" is the poster thumbnail - posters/thumb/poster-XX.jpg
+  <!-- "data-highres" is the full size poster - posters/full/poster-XX.XXX
+  <!-- "h4" tag is the poster name, "p" tag is the author -->
+
+	<div id="Container" class="container">
+    <div class="mix category-1" data-myorder="1" >
+			<img src="posters/thumb/poster-01.jpg" width="100%" data-highres="posters/full/poster-01.jpg" onclick="$(this).mbZoomify_overlay({startLevel:0});">
+			<h4 class="keywd">Assessing the Kepler inventory with Planet Hunters</h4>
+			<p class="keywd">M. E. Schwamb</p>
+			<h5 class="keywd">1</h5>
+		</div>
+		<div class="mix category-1" data-myorder="2">
+			<img src="posters/thumb/poster-02.jpg" width="100%" data-highres="posters/full/poster-02.png" onclick="$(this).mbZoomify_overlay({startLevel:0});">
+			<h4 class="keywd">Observations of platelet ice growth and oceanographic conditions during winter 2003 in McMurdo Sound, Antarctica</h4>
+			<p class="keywd">G.H. Lenonard</p>
+			<h5 class="keywd">2</h5>
+		</div>
+		<div class="mix category-3" data-myorder="3">
+			<img src="posters/thumb/poster-03.jpg" width="100%" data-highres="posters/full/poster-03.jpg" onclick="$(this).mbZoomify_overlay({startLevel:0});">
+			<h4 class="keywd">Engineering World Health Project: ESU Tester</h4>
+			<p class="keywd">Chris Wegener</p>
+			<h5 class="keywd">3</h5>
+		</div>
+		<div class="mix category-2" data-myorder="4">
+			<img src="posters/thumb/poster-04.jpg" width="100%" data-highres="posters/full/poster-04.png" onclick="$(this).mbZoomify_overlay({startLevel:0});">
+			<h4 class="keywd">The Role of PGRP Proteins in the Innate Immunity Pathways in the Malaria Vector Anopheles gambiae</h4>
+			<p class="keywd">Stephan Meister</p>
+			<h5 class="keywd">4</h5>
+		</div>
+		<div class="mix category-3" data-myorder="7">
+			<img src="posters/thumb/poster-07.jpg" width="100%" data-highres="posters/full/poster-07.jpg" onclick="$(this).mbZoomify_overlay({startLevel:0});">
+			<h4 class="keywd">Cooling effects of dirt purge holes on the tips of gas turbine blades</h4>
+			<p class="keywd">Eric Couch</p>
+			<h5 class="keywd">7</h5>
+		</div>
+    <div class="mix category-3" data-myorder="8">
+			<img src="posters/thumb/poster-08.jpg" width="100%" data-highres="posters/full/poster-08.jpg" onclick="$(this).mbZoomify_overlay({startLevel:0});">
+			<h4 class="keywd">Title of the research Study</h4>
+			<p class="keywd">Author Name</p>
+			<h5 class="keywd">8</h5>
+		</div>
+    <div class="mix category-3" data-myorder="9">
+			<img src="posters/thumb/poster-09.jpg" width="100%" data-highres="posters/full/poster-09.jpg" onclick="$(this).mbZoomify_overlay({startLevel:0});">
+			<h4 class="keywd">Forskn i polaromrgdene</h4>
+			<p class="keywd">Matilda Hallerstig</p>
+			<h5 class="keywd">9</h5>
+		</div>
+		<div class="mix category-4" data-myorder="11">
+			<img src="posters/thumb/poster-11.jpg" width="100%" data-highres="posters/full/poster-11.png" onclick="$(this).mbZoomify_overlay({startLevel:0});">
+			<h4 class="keywd">Video analysis of the schooling behaviour of Japanese surfmelt (Hypomesus japonicus) under lightand dark conditions using a mathamatical model</h4>
+			<p class="keywd">Katsuya Suzuki</p>
+			<h5 class="keywd">11</h5>
+		</div>
+    <div class="mix category-4" data-myorder="13">
+			<img src="posters/thumb/poster-13.jpg" width="100%" data-highres="posters/full/poster-13.jpg" onclick="$(this).mbZoomify_overlay({startLevel:0});">
+			<h4 class="keywd">Distribution and natural history of large invasive waterfowlin Texas</h4>
+			<p class="keywd">Daniel M. Brooks</p>
+			<h5 class="keywd">13</h5>
+		</div>
+    <div class="mix category-2" data-myorder="14" >
+      <img src="posters/thumb/poster-01.jpg" width="100%" data-highres="posters/full/poster-01.jpg" onclick="$(this).mbZoomify_overlay({startLevel:0});">
+      <h4 class="keywd">Assessing the Kepler inventory with Planet Hunters</h4>
+      <p class="keywd">M. E. Schwamb</p>
+      <h5 class="keywd">14</h5>
+    </div>
+    <div class="mix category-4" data-myorder="23">
+      <img src="posters/thumb/poster-02.jpg" width="100%" data-highres="posters/full/poster-02.png" onclick="$(this).mbZoomify_overlay({startLevel:0});">
+      <h4 class="keywd">Observations of platelet ice growth and oceanographic conditions during winter 2003 in McMurdo Sound, Antarctica</h4>
+      <p class="keywd">G.H. Lenonard</p>
+      <h5 class="keywd">23</h5>
+    </div>
+    <div class="mix category-2" data-myorder="32">
+      <img src="posters/thumb/poster-03.jpg" width="100%" data-highres="posters/full/poster-03.jpg" onclick="$(this).mbZoomify_overlay({startLevel:0});">
+      <h4 class="keywd">Engineering World Health Project: ESU Tester</h4>
+      <p class="keywd">Chris Wegener</p>
+      <h5 class="keywd">32</h5>
+    </div>
+    <div class="mix category-1" data-myorder="1" >
+			<img src="posters/thumb/poster-01.jpg" width="100%" data-highres="posters/full/poster-01.jpg" onclick="$(this).mbZoomify_overlay({startLevel:0});">
+			<h4 class="keywd">Assessing the Kepler inventory with Planet Hunters</h4>
+			<p class="keywd">M. E. Schwamb</p>
+			<h5 class="keywd">1</h5>
+		</div>
+		<div class="mix category-1" data-myorder="2">
+			<img src="posters/thumb/poster-02.jpg" width="100%" data-highres="posters/full/poster-02.png" onclick="$(this).mbZoomify_overlay({startLevel:0});">
+			<h4 class="keywd">Observations of platelet ice growth and oceanographic conditions during winter 2003 in McMurdo Sound, Antarctica</h4>
+			<p class="keywd">G.H. Lenonard</p>
+			<h5 class="keywd">2</h5>
+		</div>
+		<div class="mix category-3" data-myorder="3">
+			<img src="posters/thumb/poster-03.jpg" width="100%" data-highres="posters/full/poster-03.jpg" onclick="$(this).mbZoomify_overlay({startLevel:0});">
+			<h4 class="keywd">Engineering World Health Project: ESU Tester</h4>
+			<p class="keywd">Chris Wegener</p>
+			<h5 class="keywd">3</h5>
+		</div>
+		<div class="mix category-2" data-myorder="4">
+			<img src="posters/thumb/poster-04.jpg" width="100%" data-highres="posters/full/poster-04.png" onclick="$(this).mbZoomify_overlay({startLevel:0});">
+			<h4 class="keywd">The Role of PGRP Proteins in the Innate Immunity Pathways in the Malaria Vector Anopheles gambiae</h4>
+			<p class="keywd">Stephan Meister</p>
+			<h5 class="keywd">4</h5>
+		</div>
+		<div class="mix category-3" data-myorder="7">
+			<img src="posters/thumb/poster-07.jpg" width="100%" data-highres="posters/full/poster-07.jpg" onclick="$(this).mbZoomify_overlay({startLevel:0});">
+			<h4 class="keywd">Cooling effects of dirt purge holes on the tips of gas turbine blades</h4>
+			<p class="keywd">Eric Couch</p>
+			<h5 class="keywd">7</h5>
+		</div>
+    <div class="mix category-3" data-myorder="8">
+			<img src="posters/thumb/poster-08.jpg" width="100%" data-highres="posters/full/poster-08.jpg" onclick="$(this).mbZoomify_overlay({startLevel:0});">
+			<h4 class="keywd">Title of the research Study</h4>
+			<p class="keywd">Author Name</p>
+			<h5 class="keywd">8</h5>
+		</div>
+    <div class="mix category-3" data-myorder="9">
+			<img src="posters/thumb/poster-09.jpg" width="100%" data-highres="posters/full/poster-09.jpg" onclick="$(this).mbZoomify_overlay({startLevel:0});">
+			<h4 class="keywd">Forskn i polaromrgdene</h4>
+			<p class="keywd">Matilda Hallerstig</p>
+			<h5 class="keywd">9</h5>
+		</div>
+		<div class="mix category-4" data-myorder="11">
+			<img src="posters/thumb/poster-11.jpg" width="100%" data-highres="posters/full/poster-11.png" onclick="$(this).mbZoomify_overlay({startLevel:0});">
+			<h4 class="keywd">Video analysis of the schooling behaviour of Japanese surfmelt (Hypomesus japonicus) under lightand dark conditions using a mathamatical model</h4>
+			<p class="keywd">Katsuya Suzuki</p>
+			<h5 class="keywd">11</h5>
+		</div>
+    <div class="mix category-4" data-myorder="13">
+			<img src="posters/thumb/poster-13.jpg" width="100%" data-highres="posters/full/poster-13.jpg" onclick="$(this).mbZoomify_overlay({startLevel:0});">
+			<h4 class="keywd">Distribution and natural history of large invasive waterfowlin Texas</h4>
+			<p class="keywd">Daniel M. Brooks</p>
+			<h5 class="keywd">13</h5>
+		</div>
+    <div class="mix category-2" data-myorder="14" >
+      <img src="posters/thumb/poster-01.jpg" width="100%" data-highres="posters/full/poster-01.jpg" onclick="$(this).mbZoomify_overlay({startLevel:0});">
+      <h4 class="keywd">Assessing the Kepler inventory with Planet Hunters</h4>
+      <p class="keywd">M. E. Schwamb</p>
+      <h5 class="keywd">14</h5>
+    </div>
+    <div class="mix category-4" data-myorder="23">
+      <img src="posters/thumb/poster-02.jpg" width="100%" data-highres="posters/full/poster-02.png" onclick="$(this).mbZoomify_overlay({startLevel:0});">
+      <h4 class="keywd">Observations of platelet ice growth and oceanographic conditions during winter 2003 in McMurdo Sound, Antarctica</h4>
+      <p class="keywd">G.H. Lenonard</p>
+      <h5 class="keywd">23</h5>
+    </div>
+    <div class="mix category-2" data-myorder="32">
+      <img src="posters/thumb/poster-03.jpg" width="100%" data-highres="posters/full/poster-03.jpg" onclick="$(this).mbZoomify_overlay({startLevel:0});">
+      <h4 class="keywd">Engineering World Health Project: ESU Tester</h4>
+      <p class="keywd">Chris Wegener</p>
+      <h5 class="keywd">32</h5>
+    </div>
+    <div class="mix category-1" data-myorder="1" >
+			<img src="posters/thumb/poster-01.jpg" width="100%" data-highres="posters/full/poster-01.jpg" onclick="$(this).mbZoomify_overlay({startLevel:0});">
+			<h4 class="keywd">Assessing the Kepler inventory with Planet Hunters</h4>
+			<p class="keywd">M. E. Schwamb</p>
+			<h5 class="keywd">1</h5>
+		</div>
+		<div class="mix category-1" data-myorder="2">
+			<img src="posters/thumb/poster-02.jpg" width="100%" data-highres="posters/full/poster-02.png" onclick="$(this).mbZoomify_overlay({startLevel:0});">
+			<h4 class="keywd">Observations of platelet ice growth and oceanographic conditions during winter 2003 in McMurdo Sound, Antarctica</h4>
+			<p class="keywd">G.H. Lenonard</p>
+			<h5 class="keywd">2</h5>
+		</div>
+		<div class="mix category-3" data-myorder="3">
+			<img src="posters/thumb/poster-03.jpg" width="100%" data-highres="posters/full/poster-03.jpg" onclick="$(this).mbZoomify_overlay({startLevel:0});">
+			<h4 class="keywd">Engineering World Health Project: ESU Tester</h4>
+			<p class="keywd">Chris Wegener</p>
+			<h5 class="keywd">3</h5>
+		</div>
+		<div class="mix category-2" data-myorder="4">
+			<img src="posters/thumb/poster-04.jpg" width="100%" data-highres="posters/full/poster-04.png" onclick="$(this).mbZoomify_overlay({startLevel:0});">
+			<h4 class="keywd">The Role of PGRP Proteins in the Innate Immunity Pathways in the Malaria Vector Anopheles gambiae</h4>
+			<p class="keywd">Stephan Meister</p>
+			<h5 class="keywd">4</h5>
+		</div>
+		<div class="mix category-3" data-myorder="7">
+			<img src="posters/thumb/poster-07.jpg" width="100%" data-highres="posters/full/poster-07.jpg" onclick="$(this).mbZoomify_overlay({startLevel:0});">
+			<h4 class="keywd">Cooling effects of dirt purge holes on the tips of gas turbine blades</h4>
+			<p class="keywd">Eric Couch</p>
+			<h5 class="keywd">7</h5>
+		</div>
+    <div class="mix category-3" data-myorder="8">
+			<img src="posters/thumb/poster-08.jpg" width="100%" data-highres="posters/full/poster-08.jpg" onclick="$(this).mbZoomify_overlay({startLevel:0});">
+			<h4 class="keywd">Title of the research Study</h4>
+			<p class="keywd">Author Name</p>
+			<h5 class="keywd">8</h5>
+		</div>
+    <div class="mix category-3" data-myorder="9">
+			<img src="posters/thumb/poster-09.jpg" width="100%" data-highres="posters/full/poster-09.jpg" onclick="$(this).mbZoomify_overlay({startLevel:0});">
+			<h4 class="keywd">Forskn i polaromrgdene</h4>
+			<p class="keywd">Matilda Hallerstig</p>
+			<h5 class="keywd">9</h5>
+		</div>
+		<div class="mix category-4" data-myorder="11">
+			<img src="posters/thumb/poster-11.jpg" width="100%" data-highres="posters/full/poster-11.png" onclick="$(this).mbZoomify_overlay({startLevel:0});">
+			<h4 class="keywd">Video analysis of the schooling behaviour of Japanese surfmelt (Hypomesus japonicus) under lightand dark conditions using a mathamatical model</h4>
+			<p class="keywd">Katsuya Suzuki</p>
+			<h5 class="keywd">11</h5>
+		</div>
+    <div class="mix category-4" data-myorder="13">
+			<img src="posters/thumb/poster-13.jpg" width="100%" data-highres="posters/full/poster-13.jpg" onclick="$(this).mbZoomify_overlay({startLevel:0});">
+			<h4 class="keywd">Distribution and natural history of large invasive waterfowlin Texas</h4>
+			<p class="keywd">Daniel M. Brooks</p>
+			<h5 class="keywd">13</h5>
+		</div>
+    <div class="mix category-2" data-myorder="14" >
+      <img src="posters/thumb/poster-01.jpg" width="100%" data-highres="posters/full/poster-01.jpg" onclick="$(this).mbZoomify_overlay({startLevel:0});">
+      <h4 class="keywd">Assessing the Kepler inventory with Planet Hunters</h4>
+      <p class="keywd">M. E. Schwamb</p>
+      <h5 class="keywd">14</h5>
+    </div>
+    <div class="mix category-4" data-myorder="23">
+      <img src="posters/thumb/poster-02.jpg" width="100%" data-highres="posters/full/poster-02.png" onclick="$(this).mbZoomify_overlay({startLevel:0});">
+      <h4 class="keywd">Observations of platelet ice growth and oceanographic conditions during winter 2003 in McMurdo Sound, Antarctica</h4>
+      <p class="keywd">G.H. Lenonard</p>
+      <h5 class="keywd">23</h5>
+    </div>
+    <div class="mix category-2" data-myorder="32">
+      <img src="posters/thumb/poster-03.jpg" width="100%" data-highres="posters/full/poster-03.jpg" onclick="$(this).mbZoomify_overlay({startLevel:0});">
+      <h4 class="keywd">Engineering World Health Project: ESU Tester</h4>
+      <p class="keywd">Chris Wegener</p>
+      <h5 class="keywd">32</h5>
+    </div>
+    <div class="mix category-1" data-myorder="1" >
+			<img src="posters/thumb/poster-01.jpg" width="100%" data-highres="posters/full/poster-01.jpg" onclick="$(this).mbZoomify_overlay({startLevel:0});">
+			<h4 class="keywd">Assessing the Kepler inventory with Planet Hunters</h4>
+			<p class="keywd">M. E. Schwamb</p>
+			<h5 class="keywd">1</h5>
+		</div>
+		<div class="mix category-1" data-myorder="2">
+			<img src="posters/thumb/poster-02.jpg" width="100%" data-highres="posters/full/poster-02.png" onclick="$(this).mbZoomify_overlay({startLevel:0});">
+			<h4 class="keywd">Observations of platelet ice growth and oceanographic conditions during winter 2003 in McMurdo Sound, Antarctica</h4>
+			<p class="keywd">G.H. Lenonard</p>
+			<h5 class="keywd">2</h5>
+		</div>
+		<div class="mix category-3" data-myorder="3">
+			<img src="posters/thumb/poster-03.jpg" width="100%" data-highres="posters/full/poster-03.jpg" onclick="$(this).mbZoomify_overlay({startLevel:0});">
+			<h4 class="keywd">Engineering World Health Project: ESU Tester</h4>
+			<p class="keywd">Chris Wegener</p>
+			<h5 class="keywd">3</h5>
+		</div>
+		<div class="mix category-2" data-myorder="4">
+			<img src="posters/thumb/poster-04.jpg" width="100%" data-highres="posters/full/poster-04.png" onclick="$(this).mbZoomify_overlay({startLevel:0});">
+			<h4 class="keywd">The Role of PGRP Proteins in the Innate Immunity Pathways in the Malaria Vector Anopheles gambiae</h4>
+			<p class="keywd">Stephan Meister</p>
+			<h5 class="keywd">4</h5>
+		</div>
+		<div class="mix category-3" data-myorder="7">
+			<img src="posters/thumb/poster-07.jpg" width="100%" data-highres="posters/full/poster-07.jpg" onclick="$(this).mbZoomify_overlay({startLevel:0});">
+			<h4 class="keywd">Cooling effects of dirt purge holes on the tips of gas turbine blades</h4>
+			<p class="keywd">Eric Couch</p>
+			<h5 class="keywd">7</h5>
+		</div>
+    <div class="mix category-3" data-myorder="8">
+			<img src="posters/thumb/poster-08.jpg" width="100%" data-highres="posters/full/poster-08.jpg" onclick="$(this).mbZoomify_overlay({startLevel:0});">
+			<h4 class="keywd">Title of the research Study</h4>
+			<p class="keywd">Author Name</p>
+			<h5 class="keywd">8</h5>
+		</div>
+    <div class="mix category-3" data-myorder="9">
+			<img src="posters/thumb/poster-09.jpg" width="100%" data-highres="posters/full/poster-09.jpg" onclick="$(this).mbZoomify_overlay({startLevel:0});">
+			<h4 class="keywd">Forskn i polaromrgdene</h4>
+			<p class="keywd">Matilda Hallerstig</p>
+			<h5 class="keywd">9</h5>
+		</div>
+		<div class="mix category-4" data-myorder="11">
+			<img src="posters/thumb/poster-11.jpg" width="100%" data-highres="posters/full/poster-11.png" onclick="$(this).mbZoomify_overlay({startLevel:0});">
+			<h4 class="keywd">Video analysis of the schooling behaviour of Japanese surfmelt (Hypomesus japonicus) under lightand dark conditions using a mathamatical model</h4>
+			<p class="keywd">Katsuya Suzuki</p>
+			<h5 class="keywd">11</h5>
+		</div>
+    <div class="mix category-4" data-myorder="13">
+			<img src="posters/thumb/poster-13.jpg" width="100%" data-highres="posters/full/poster-13.jpg" onclick="$(this).mbZoomify_overlay({startLevel:0});">
+			<h4 class="keywd">Distribution and natural history of large invasive waterfowlin Texas</h4>
+			<p class="keywd">Daniel M. Brooks</p>
+			<h5 class="keywd">13</h5>
+		</div>
+    <div class="mix category-2" data-myorder="14" >
+      <img src="posters/thumb/poster-01.jpg" width="100%" data-highres="posters/full/poster-01.jpg" onclick="$(this).mbZoomify_overlay({startLevel:0});">
+      <h4 class="keywd">Assessing the Kepler inventory with Planet Hunters</h4>
+      <p class="keywd">M. E. Schwamb</p>
+      <h5 class="keywd">14</h5>
+    </div>
+    <div class="mix category-4" data-myorder="23">
+      <img src="posters/thumb/poster-02.jpg" width="100%" data-highres="posters/full/poster-02.png" onclick="$(this).mbZoomify_overlay({startLevel:0});">
+      <h4 class="keywd">Observations of platelet ice growth and oceanographic conditions during winter 2003 in McMurdo Sound, Antarctica</h4>
+      <p class="keywd">G.H. Lenonard</p>
+      <h5 class="keywd">23</h5>
+    </div>
+    <div class="mix category-2" data-myorder="32">
+      <img src="posters/thumb/poster-03.jpg" width="100%" data-highres="posters/full/poster-03.jpg" onclick="$(this).mbZoomify_overlay({startLevel:0});">
+      <h4 class="keywd">Engineering World Health Project: ESU Tester</h4>
+      <p class="keywd">Chris Wegener</p>
+      <h5 class="keywd">32</h5>
+    </div>
+    <div class="mix category-1" data-myorder="1" >
+			<img src="posters/thumb/poster-01.jpg" width="100%" data-highres="posters/full/poster-01.jpg" onclick="$(this).mbZoomify_overlay({startLevel:0});">
+			<h4 class="keywd">Assessing the Kepler inventory with Planet Hunters</h4>
+			<p class="keywd">M. E. Schwamb</p>
+			<h5 class="keywd">1</h5>
+		</div>
+		<div class="mix category-1" data-myorder="2">
+			<img src="posters/thumb/poster-02.jpg" width="100%" data-highres="posters/full/poster-02.png" onclick="$(this).mbZoomify_overlay({startLevel:0});">
+			<h4 class="keywd">Observations of platelet ice growth and oceanographic conditions during winter 2003 in McMurdo Sound, Antarctica</h4>
+			<p class="keywd">G.H. Lenonard</p>
+			<h5 class="keywd">2</h5>
+		</div>
+		<div class="mix category-3" data-myorder="3">
+			<img src="posters/thumb/poster-03.jpg" width="100%" data-highres="posters/full/poster-03.jpg" onclick="$(this).mbZoomify_overlay({startLevel:0});">
+			<h4 class="keywd">Engineering World Health Project: ESU Tester</h4>
+			<p class="keywd">Chris Wegener</p>
+			<h5 class="keywd">3</h5>
+		</div>
+		<div class="mix category-2" data-myorder="4">
+			<img src="posters/thumb/poster-04.jpg" width="100%" data-highres="posters/full/poster-04.png" onclick="$(this).mbZoomify_overlay({startLevel:0});">
+			<h4 class="keywd">The Role of PGRP Proteins in the Innate Immunity Pathways in the Malaria Vector Anopheles gambiae</h4>
+			<p class="keywd">Stephan Meister</p>
+			<h5 class="keywd">4</h5>
+		</div>
+		<div class="mix category-3" data-myorder="7">
+			<img src="posters/thumb/poster-07.jpg" width="100%" data-highres="posters/full/poster-07.jpg" onclick="$(this).mbZoomify_overlay({startLevel:0});">
+			<h4 class="keywd">Cooling effects of dirt purge holes on the tips of gas turbine blades</h4>
+			<p class="keywd">Eric Couch</p>
+			<h5 class="keywd">7</h5>
+		</div>
+    <div class="mix category-3" data-myorder="8">
+			<img src="posters/thumb/poster-08.jpg" width="100%" data-highres="posters/full/poster-08.jpg" onclick="$(this).mbZoomify_overlay({startLevel:0});">
+			<h4 class="keywd">Title of the research Study</h4>
+			<p class="keywd">Author Name</p>
+			<h5 class="keywd">8</h5>
+		</div>
+    <div class="mix category-3" data-myorder="9">
+			<img src="posters/thumb/poster-09.jpg" width="100%" data-highres="posters/full/poster-09.jpg" onclick="$(this).mbZoomify_overlay({startLevel:0});">
+			<h4 class="keywd">Forskn i polaromrgdene</h4>
+			<p class="keywd">Matilda Hallerstig</p>
+			<h5 class="keywd">9</h5>
+		</div>
+		<div class="mix category-4" data-myorder="11">
+			<img src="posters/thumb/poster-11.jpg" width="100%" data-highres="posters/full/poster-11.png" onclick="$(this).mbZoomify_overlay({startLevel:0});">
+			<h4 class="keywd">Video analysis of the schooling behaviour of Japanese surfmelt (Hypomesus japonicus) under lightand dark conditions using a mathamatical model</h4>
+			<p class="keywd">Katsuya Suzuki</p>
+			<h5 class="keywd">11</h5>
+		</div>
+    <div class="mix category-4" data-myorder="13">
+			<img src="posters/thumb/poster-13.jpg" width="100%" data-highres="posters/full/poster-13.jpg" onclick="$(this).mbZoomify_overlay({startLevel:0});">
+			<h4 class="keywd">Distribution and natural history of large invasive waterfowlin Texas</h4>
+			<p class="keywd">Daniel M. Brooks</p>
+			<h5 class="keywd">13</h5>
+		</div>
+    <div class="mix category-2" data-myorder="14" >
+      <img src="posters/thumb/poster-01.jpg" width="100%" data-highres="posters/full/poster-01.jpg" onclick="$(this).mbZoomify_overlay({startLevel:0});">
+      <h4 class="keywd">Assessing the Kepler inventory with Planet Hunters</h4>
+      <p class="keywd">M. E. Schwamb</p>
+      <h5 class="keywd">14</h5>
+    </div>
+    <div class="mix category-4" data-myorder="23">
+      <img src="posters/thumb/poster-02.jpg" width="100%" data-highres="posters/full/poster-02.png" onclick="$(this).mbZoomify_overlay({startLevel:0});">
+      <h4 class="keywd">Observations of platelet ice growth and oceanographic conditions during winter 2003 in McMurdo Sound, Antarctica</h4>
+      <p class="keywd">G.H. Lenonard</p>
+      <h5 class="keywd">23</h5>
+    </div>
+    <div class="mix category-2" data-myorder="32">
+      <img src="posters/thumb/poster-03.jpg" width="100%" data-highres="posters/full/poster-03.jpg" onclick="$(this).mbZoomify_overlay({startLevel:0});">
+      <h4 class="keywd">Engineering World Health Project: ESU Tester</h4>
+      <p class="keywd">Chris Wegener</p>
+      <h5 class="keywd">32</h5>
+    </div>
+
+		<div class="gap"></div>
+		<div class="gap"></div>
+	</div>
+
+	<!-- Footer logo -->
+	<div class="footer">
+		<a href="#"><img class="center-block" src="img/footer.png" alt="One Vision"></a>
+	</div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/jquery-1.12.2.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.mixitup.min.js"></script>
+    <!--<script src="js/jquery.mousewheel.js"></script> -->
+    <script src="js/mb.zoomify.js"></script>
+    <script src="js/jquery.fullscreen.js"></script>
+
+	<script>
+		$(function(){
+		  $('#Container').mixItUp();
+		});
+	</script>
+
+	<!-- Loads tips window on page load -->
+	<script type="text/javascript">
+		$(window).load(function(){
+			$('#myModal').modal('show');
+		});
+	</script>
+
+	<!-- Script for search input -->
+	<script>
+		$(function() {
+
+		  $(".container").mixItUp();
+
+		  var inputText;
+		  var $matching = $();
+
+		  // Delay function
+		  var delay = (function(){
+			var timer = 0;
+			return function(callback, ms){
+			  clearTimeout (timer);
+			  timer = setTimeout(callback, ms);
+			};
+		  })();
+
+		  $("#input").keyup(function(){
+			// Delay function invoked to make sure user stopped typing
+			delay(function(){
+			  inputText = $("#input").val().toLowerCase();
+
+			  // Check to see if input field is empty
+			  if ((inputText.length) > 0) {
+				$( '.mix').each(function() {
+				  $this = $("this");
+
+				   // add item to be filtered out if input text matches items inside the title
+				   if($(this).children('.keywd').text().toLowerCase().match(inputText)) {
+					$matching = $matching.add(this);
+				  }
+				  else {
+					// removes any previously matched item
+					$matching = $matching.not(this);
+				  }
+				});
+				$(".container").mixItUp('filter', $matching);
+			  }
+
+			  else {
+				// resets the filter to show all item if input is empty
+				$(".container").mixItUp('filter', 'all');
+			  }
+			}, 200 );
+		  });
+		})
+	</script>
+
+	<script> //Force fullscreen onclick
+	addEventListener("click", function() {
+		var
+			  el = document.documentElement
+			, rfs =
+				   el.requestFullScreen
+				|| el.webkitRequestFullScreen
+				|| el.mozRequestFullScreen
+		;
+		rfs.call(el);
+	});
+	</script>
+  </body>
+</html>
