@@ -22,34 +22,44 @@
 
   </head>
   <body>
-  	<!-- Filter buttons. If you add a  button you will also need to adjust the MixItUp css-->
+  <!-- Menu bar-->
 	<div class="controls">
 		<div style="float: right; margin: auto; transform: translateY(50%);">
 
       <!-- Dropdown button for filtering -->
-      <div class="btn-group">
-  			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Click to filter by stream <span class=caret></span>
+      <label>Filtered by poster stream: </label>
+      <div class="dropdown btn-group">
+  			<button class="btn btn-default dropdown-toggle" type="button" id="dropdowMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+          Click to filter
+          <span class=caret></span>
         </button>
-        <ul class="dropdown-menu" id="buttons">
-    			<li class="filter" data-filter="all">All</li>
-    			<li class="filter" id="stream-1" data-filter=".category-1">Stream 1</li>
-    			<li class="filter" id="stream-2" data-filter=".category-2">Stream 2</li>
-    			<li class="filter" id="stream-3" data-filter=".category-3">Stream 3</li>
-    			<li class="filter" id="stream-4" data-filter=".category-4">Stream 4</li>
+        <ul class="dropdown-menu" id="buttons" aria-labelledby="dropdownmenu1">
+    			<li class="filter"  data-filter="all"><a href="#" data-value="All">All</a></li>
+    			<li class="filter" id="stream-1" data-filter=".category-1"> <a href="#" data-value="Stream 1">Stream 1</a></li>
+    			<li class="filter" id="stream-2" data-filter=".category-2"> <a href="#" data-value="Stream 2">Stream 2</a></li>
+    			<li class="filter" id="stream-3" data-filter=".category-3"> <a href="#" data-value="Stream 3">Stream 3</a></li>
+    			<li class="filter" id="stream-4" data-filter=".category-4"> <a href="#" data-value="Stream 4">Stream 4</a></li>
         </ul>
       </div>
       <!-- /Dropdown button -->
-      
-			<input type="search" id="input" placeholder="Search...">
 
+      <!-- Search -->
+      <label>Search all Posters: </lable>
+			<input type="search" id="input" placeholder="Search...">
+      <!-- /Search -->
+
+      <!-- Sort by poster number -->
 			<label>Sort by poster number:</label>
 			<button class="sort" data-sort="myorder:asc">&#9650;</button>
 			<button class="sort" data-sort="myorder:desc">&#9660;</button>
+      <!-- /Sort by poster number -->
 		</div>
-		<!--  Logo on menu bar -->
+
+		<!--  Header Logo on menu bar -->
 		<img src="img/logo.png" alt="One Vision" align="left" style="z-index: 200" data-toggle="modal" data-target="#myModal">
 	</div>
+  <!-- /Menu bar -->
+
 	<!-- Modal  - This is the popup window on launch.  You can also access it by clicking on the header logo -->
 	<div tabindex="-1" class="modal fade" id="myModal" role="dialog" aria-hidden="true" aria-labelledby="myModalLabel">
 	  <div class="modal-dialog">
@@ -74,7 +84,6 @@
 			</h5>
 		  </div>
 		  <div class="modal-footer">
-<!--			<button class="btn btn-primary" type="submit" onclick="$(document).fullScreen(true)">Switch to fullscreen</button> -->
 			<button class="btn btn-primary" type="button" data-dismiss="modal">Close and enter fullscreen mode</button>
 		  </div><!-- /.modal-footer -->
 		</div><!-- /.modal-content -->
@@ -237,5 +246,13 @@
 		rfs.call(el);
 	});
 	</script>
+
+  <script> //Change dropdown lable to filter name
+  $(".dropdown-menu li a").click(function(){
+    $(this).parents(".dropdown").find('.btn').html($(this).text() + ' <span class="caret"></span>');
+    $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
+  });
+  </script>
+
   </body>
 </html>
