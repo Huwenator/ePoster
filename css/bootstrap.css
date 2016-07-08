@@ -13,8 +13,8 @@ body {
   margin: 0;
 }
 
-body::-webkit-scrollbar { 
-    display: none; 
+body::-webkit-scrollbar {
+    display: none;
 }
 
 article,
@@ -1427,6 +1427,7 @@ ol ul,
 ul ol,
 ol ol {
   margin-bottom: 0;
+
 }
 .list-unstyled {
   padding-left: 0;
@@ -3532,12 +3533,12 @@ tbody.collapse.in {
   display: none;
   float: left;
   min-width: 160px;
-  padding: 5px 0;
+  padding: 5px;
   margin: 2px 0 0;
-  font-size: 14px;
+  font-size: 16px;
   text-align: left;
   list-style: none;
-  background-color: #fff;
+  background-color: #555;
   -webkit-background-clip: padding-box;
           background-clip: padding-box;
   border: 1px solid #ccc;

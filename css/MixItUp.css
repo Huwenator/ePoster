@@ -22,7 +22,7 @@
 	  background-color: #555;
 	  margin-bottom: 100px;
 	}
-	
+
 	button{
 	  font-family: 'Helvetica Neue', arial, sans-serif;
 	  background-color: #555;
@@ -33,7 +33,7 @@
 	  background: #333;
 	  color: #eee;
 	  z-index: 100;
-	  vertical-align: middle; 
+	  vertical-align: middle;
 	  position: fixed;
 	  width: 100%;
 	}
@@ -55,17 +55,43 @@
 	  cursor: pointer;
 	}
 
+	#buttons li {
+		float:inherit;
+		list-style: none;
+		text-align: center;
+		background-color: #555;
+		margin-right: 30px;
+		width: 150px;
+		line-height: 60px;
+	}
+
+	#buttons li a{
+		display: block;
+		color: #fff;
+		text-decoration: none;
+	}
+
+	#buttons li a:hover {
+		background-color: #666;
+		color: #000;
+		text-decoration: none;
+	}
 	#stream-1{
-	  border-top: 2px solid limegreen;
+	  /*border-top: 2px solid limegreen;*/
+		color: limegreen;
+
 	}
 	#stream-2{
-	  border-top: 2px solid yellow;
+		/*border-top: 2px solid yellow;*/
+		color: yellow;
 	}
 	#stream-3{
-	  border-top: 2px solid blue;
+		/*border-top: 2px solid blue;*/
+		color: blue;
 	}
 	#stream-4{
-	  border-top: 2px solid red;
+		/*border-top: 2px solid red;*/
+		color: red;
 	}
 
 	button.active{
@@ -89,12 +115,12 @@
 	  color: #000;
 	  border-radius: 4px;
 	}
-	
-	
+
+
 	input[type="search"]::-webkit-search-cancel-button {
     -webkit-appearance: searchfield-cancel-button;
 	}
-	
+
 	.container{
 	  padding: 8% 2% 0;
 	  text-align: justify;
@@ -105,19 +131,19 @@
 	h5{
 	  font-size: 0px;
 	}
-	
+
 	h4{
 	  color: #ffffff;
 	  font-size: 14px;
 	  font-weight: normal;
 	}
-	
+
 	p{
 	  color: #ffffff;
 	  font-size: 12px;
 	  font-weight: normal;
 	}
-	
+
 	.container:after{
 	  content: '';
 	  display: inline-block;
@@ -136,7 +162,7 @@
 	  margin-bottom: 2%;
 	  display: none;
 	}
-	
+
 	.container:img{
 	  vertical-align: top;
 	}
@@ -154,17 +180,17 @@
 	  border-top: 2px solid yellow;
   	  vertical-align: top;
 	}
-	
+
 	.container .mix.category-3{
 	  border-top: 2px solid blue;
   	  vertical-align: top;
 	}
-	
+
 	.container .mix.category-4{
 	  border-top: 2px solid red;
   	  vertical-align: top;
 	}
-	
+
 /** Text at the top of each thumbnail **/
 	.container .mix:before{
 	  content: 'Poster #'attr(data-myorder);
@@ -172,7 +198,7 @@
 	  color: white;
 	  font-size: 16px;
 	}
-	
+
 	.container .mix:after{
 	  content: '';
 	  padding: 4% 6%;
@@ -192,13 +218,13 @@
 		width: 23.5%;
 	  }
 	}
-/*	
+/*
 	.footer{
 	  position: fixed;
 	  z-index: 100;
 	  width: 100%;
 	}
-*/	
+*/
 	.footer {
 	  position: absolute;
 	  bottom: 0;
