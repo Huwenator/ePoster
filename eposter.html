@@ -8,6 +8,7 @@
     <title>The One Vision ePoster App</title>
 
     <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/bootstrap-theme.css" rel="stylesheet">
     <link href="css/MixItUp.css" rel="stylesheet">
     <link href="css/mb.zoomify.css" rel="stylesheet">
 
@@ -25,13 +26,21 @@
 	<div class="controls">
 		<div style="float: right; margin: auto; transform: translateY(50%);">
 
-			<label>Filter:</label>
-			<button class="filter" data-filter="all">All</button>
-			<button class="filter" id="stream-1" data-filter=".category-1">Stream 1</button>
-			<button class="filter" id="stream-2" data-filter=".category-2">Stream 2</button>
-			<button class="filter" id="stream-3" data-filter=".category-3">Stream 3</button>
-			<button class="filter" id="stream-4" data-filter=".category-4">Stream 4</button>
-
+      <!-- Dropdown button for filtering -->
+      <div class="btn-group">
+  			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Click to filter by stream <span class=caret></span>
+        </button>
+        <ul class="dropdown-menu" id="buttons">
+    			<li class="filter" data-filter="all">All</li>
+    			<li class="filter" id="stream-1" data-filter=".category-1">Stream 1</li>
+    			<li class="filter" id="stream-2" data-filter=".category-2">Stream 2</li>
+    			<li class="filter" id="stream-3" data-filter=".category-3">Stream 3</li>
+    			<li class="filter" id="stream-4" data-filter=".category-4">Stream 4</li>
+        </ul>
+      </div>
+      <!-- /Dropdown button -->
+      
 			<input type="search" id="input" placeholder="Search...">
 
 			<label>Sort by poster number:</label>
